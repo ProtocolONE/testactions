@@ -1,0 +1,3 @@
+FROM nginx:1.15.4
+
+COPY 1.txt /usr/share/nging/html/
