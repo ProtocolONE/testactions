@@ -5,7 +5,7 @@ workflow "Test k8s deployment with helm" {
 
 action "Build image" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
-  args = "build -f Dockerfile.nginx -t p1hub/testactions"
+  args = "build -f Dockerfile.nginx -t p1hub/testactions ."
 }
 
 action "Docker Registry" {
