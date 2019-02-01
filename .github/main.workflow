@@ -1,6 +1,9 @@
 workflow "Test k8s deployment with helm" {
   on = "push"
-  resolves = ["Docker push"]
+  resolves = [
+    "Docker push",
+    "curl",
+  ]
 }
 
 action "Build image" {
@@ -18,4 +21,9 @@ action "Docker push" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["Docker Registry"]
   args = "push p1hub/testactions"
+}
+
+action "curl" {
+  uses = "curl"
+  args = "-k https://31.25.227.71:6443/api"
 }
