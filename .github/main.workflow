@@ -17,5 +17,5 @@ action "Docker Registry" {
 action "Docker push" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["Docker Registry"]
-  args = "push -t p1hub/testactions"
+  args = "push p1hub/testactions"
 }
