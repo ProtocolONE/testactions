@@ -25,5 +25,5 @@ action "Docker push" {
 
 action "curl" {
   uses = "curl"
-  args = "-k https://31.25.227.71:6443/api"
+  args = "https://31.25.227.71:6443/api"
 }
