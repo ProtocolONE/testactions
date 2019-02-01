@@ -8,3 +8,4 @@ kubectl config set-context ci --cluster=k8s --user=ci &&
 kubectl config use-context ci
 kubectl config get
 
+ls -al /github/workspace/
