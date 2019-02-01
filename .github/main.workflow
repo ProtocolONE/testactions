@@ -25,6 +25,6 @@ action "Docker push" {
 action "p1hub/kubernetes-helm:2.11.0" {
   uses = "docker://p1hub/kubernetes-helm:2.11.0"
   needs = ["Docker push"]
-  args = "/bin/sh -c 'echo teeeeest'"
+  args = "/bin/sh -c 'kubectl config set-context ci --cluster=k8s; kubectl config get'"
   secrets = ["KUBECONFIG"]
 }
