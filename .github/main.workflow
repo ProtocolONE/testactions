@@ -1,9 +1,6 @@
 workflow "Test k8s deployment with helm" {
   on = "push"
-  resolves = [
-    "Docker push",
-    "curl",
-  ]
+  resolves = ["p1hub/kubernetes-helm:2.11.0"]
 }
 
 action "Build image" {
@@ -13,7 +10,9 @@ action "Build image" {
 
 action "Docker Registry" {
   uses = "actions/docker/login@c08a5fc9e0286844156fefff2c141072048141f6"
-  needs = ["Build image"]
+  needs = [
+    "Build image",
+  ]
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
 
@@ -23,7 +22,8 @@ action "Docker push" {
   args = "push p1hub/testactions"
 }
 
-action "curl" {
-  uses = "curl"
-  args = "https://31.25.227.71:6443/api"
+action "p1hub/kubernetes-helm:2.11.0" {
+  uses = "p1hub/kubernetes-helm"
+  needs = ["Docker push"]
+  args = "/bin/sh -c kubectl config view; "
 }
