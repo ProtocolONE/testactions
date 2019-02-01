@@ -9,3 +9,4 @@ kubectl config use-context ci
 kubectl config view
 
 ls -al /github/workspace/
+echo $KUBECONFIG
