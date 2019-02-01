@@ -11,4 +11,4 @@ LABEL "com.github.actions.color"="blue"
 COPY deploy.sh /usr/bin/deploy.sh
 RUN chmod +x  /usr/bin/deploy.sh
 
-CMD ["/usr/bin/deploy.sh"]
+CMD ["deploy.sh"]
