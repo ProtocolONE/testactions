@@ -1,6 +1,6 @@
 workflow "Test k8s deployment with helm" {
   on = "push"
-  resolves = ["p1hub/kubernetes-helm:2.11.0"]
+  resolves = ["deploy to k8s"]
 }
 
 action "Build image" {
@@ -22,9 +22,8 @@ action "Docker push" {
   args = "push p1hub/testactions"
 }
 
-action "p1hub/kubernetes-helm:2.11.0" {
-  uses = "docker://p1hub/kubernetes-helm:2.11.0"
+action "deploy to k8s" {
+  uses = "./.github/actions/deploy"
   needs = ["Docker push"]
-  args = "/bin/sh -c kubectl config get"
   secrets = ["KUBECONFIG"]
 }
